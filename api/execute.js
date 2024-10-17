@@ -8,6 +8,9 @@ export default function handler(req, res) {
         const allowedCommands = [
             'ls',
             'mkdir',
+            'sudo',
+            'apt',
+            './'
             'rm',
             'echo',
             'clear',
