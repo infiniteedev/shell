@@ -8,27 +8,20 @@ export default function handler(req, res) {
         const allowedCommands = [
             'ls',
             'mkdir',
-            'sudo',
-            'apt',
-            './'
             'rm',
             'echo',
             'clear',
             'cd'
         ];
 
-        // Check if the command is allowed
         if (!allowedCommands.some(cmd => command.startsWith(cmd))) {
             return res.status(403).send('Command not allowed');
         }
 
-        // Handle the 'clear' command
         if (command === 'clear') {
-            // Simply return a message that output is cleared
             return res.send({ clear: true });
         }
 
-        // Handle 'cd' command
         if (command.startsWith('cd')) {
             const dir = command.split(' ')[1];
             if (!dir) {
