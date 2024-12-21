@@ -1,12 +1,44 @@
 {
-  "name": "web-shell",
+  "name": "shell",
   "version": "1.0.0",
-  "main": "index.html",
+  "description": "A simple web shell application built with Express",
+  "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "build": "echo \"No build step required\"",
+    "test": "echo \"No tests specified\""
   },
+  "keywords": [
+    "web-shell",
+    "express",
+    "node",
+    "api",
+    "shelljs",
+    "execa"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
   "dependencies": {
     "express": "^4.18.1",
-    "cors": "^2.8.5"
-  }
+    "cors": "^2.8.5",
+    "shelljs": "^0.8.5",
+    "execa": "^6.0.0",
+    "path": "^0.12.7",
+    "fs-extra": "^10.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/infiniteedev/shell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/infiniteedev/shell/issues"
+  },
+  "homepage": "https://github.com/infiniteedev/shell#readme"
 }
