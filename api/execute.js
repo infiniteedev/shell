@@ -9,6 +9,11 @@ export default function handler(req, res) {
             'ls',
             'mkdir',
             'rm',
+            'apt',
+            'sudo',
+            'curl',
+            'npm',
+            'git',
             'echo',
             'clear',
             'cd'
