@@ -1,10 +1,10 @@
 const path = require("path");
 const fs = require("fs");
 const shell = require("shelljs");
-const execa = require("execa"); // New package for async command execution
+const execa = require("execa"); // Async command execution
 let currentDir = process.cwd(); // Persistent directory
 
-export default function handler(req, res) {
+export default async function handler(req, res) {
     if (req.method === "POST") {
         const command = req.body.command;
 
@@ -46,8 +46,11 @@ export default function handler(req, res) {
             }
 
             try {
-                // Resolve and verify the directory
+                // Sanitize directory path to avoid directory traversal
                 const resolvedDir = path.resolve(currentDir, dir);
+                if (!resolvedDir.startsWith(currentDir)) {
+                    return res.status(403).send("Directory traversal is not allowed");
+                }
 
                 // Check if the directory exists
                 if (!fs.existsSync(resolvedDir) || !fs.lstatSync(resolvedDir).isDirectory()) {
@@ -63,9 +66,8 @@ export default function handler(req, res) {
             }
         }
 
-        // Execute commands using shelljs for easy shell command access
+        // Execute commands using shelljs for common commands like ls, pwd
         if (command.startsWith("ls") || command.startsWith("pwd")) {
-            // Using shelljs for common commands
             const result = shell.exec(command, { silent: true, cwd: currentDir });
             if (result.code !== 0) {
                 return res.status(500).send(`Error: ${result.stderr}`);
@@ -91,4 +93,4 @@ export default function handler(req, res) {
         res.status(405).end(`Method ${req.method} Not Allowed`);
     }
             }
-                    
+                
