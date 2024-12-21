@@ -1,12 +1,22 @@
 {
-  "name": "web-shell",
+  "name": "command-executor",
   "version": "1.0.0",
-  "main": "index.html",
+  "description": "A simple command executor server",
+  "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.18.1",
-    "cors": "^2.8.5"
-  }
+    "express": "^4.18.2",
+    "execa": "^7.0.0",
+    "shelljs": "^0.8.5",
+    "path": "^0.12.7",
+    "fs-extra": "^11.1.0"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "author": "",
+  "license": "ISC"
 }
